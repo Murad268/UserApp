@@ -1,7 +1,7 @@
 ﻿using System;
 using UserApp.models;
 using UserApp.enums;
-public class BasePerson
+public abstract class BasePerson
 {
     public int Id { get; set; }
     public string Name { get; set; }
@@ -10,4 +10,7 @@ public class BasePerson
     public string Email { get; set; }
     public string Password { get; set; }
     public UserRole UserRole { get; set; }
+
+    public abstract void DisplayUserRole();
 }
+

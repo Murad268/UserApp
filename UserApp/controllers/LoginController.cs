@@ -13,13 +13,11 @@ namespace UserApp.controllers
     internal class LoginController
     {
         Users usersDb;
-        PasswordHelper passwordHelper;
         LoginHelper loginHelper;
 
         public LoginController()
         {
             usersDb = new Users();
-            passwordHelper = new PasswordHelper();
             loginHelper = new LoginHelper();
         }
 
@@ -86,20 +84,20 @@ namespace UserApp.controllers
                 }
             } while (string.IsNullOrWhiteSpace(password) || password.Length < 8);
 
-            string hashedPassword = passwordHelper.HashPassword(password);
+            string hashedPassword = PasswordHelper.HashPassword(password);
 
             User newUser = new User()
             {
-                Id = usersDb.users.Max(u => u.Id) + 1, 
+                Id = usersDb.users.Max(u => u.Id) + 1,
                 Name = name,
                 Surname = surname,
                 Age = age,
                 Email = email,
                 Password = hashedPassword,
-                UserRole = UserRole.User 
+                UserRole = UserRole.User
             };
 
-            usersDb.users.Add(newUser);  
+            usersDb.users.Add(newUser);
 
             Console.WriteLine("Qeydiyyat uğurla tamamlandı! Yeni istifadəçi əlavə edildi:");
             Console.WriteLine($"ID: {newUser.Id}, Ad: {newUser.Name}, Email: {newUser.Email}");
@@ -121,7 +119,7 @@ namespace UserApp.controllers
 
                 if (user != null)
                 {
-                    bool passwordMatches = passwordHelper.VerifyPassword(user.Password, password);
+                    bool passwordMatches = PasswordHelper.VerifyPassword(user.Password, password);
                     if (passwordMatches)
                     {
                         Console.WriteLine("Sistemə uğurla daxil oldunuz!");
@@ -133,7 +131,7 @@ namespace UserApp.controllers
                         }
                         else
                         {
-                            UserPanel(user);  
+                            UserPanel(user);
                         }
                     }
                     else
@@ -162,7 +160,7 @@ namespace UserApp.controllers
                 switch (choice)
                 {
                     case "1":
-                        UpdateUserInfo(currentUser, true);  
+                        UpdateUserInfo(currentUser, true);
                         break;
                     case "2":
                         continueLoop = false;
@@ -238,7 +236,6 @@ namespace UserApp.controllers
             }
         }
 
-
         public void ShowAllUsers()
         {
             Console.WriteLine("İstifadəçilər siyahısı:");
@@ -257,10 +254,6 @@ namespace UserApp.controllers
             {
                 bool isCurrentUser = (currentUser.Id == userToUpdate.Id);
                 UpdateUserInfo(userToUpdate, isCurrentUser);
-                if (isCurrentUser)
-                {
-                    Console.WriteLine("Hesabdan çıxılır...");
-                }
             }
             else
             {
@@ -324,7 +317,7 @@ namespace UserApp.controllers
             {
                 if (newPassword.Length >= 8)
                 {
-                    userToUpdate.Password = passwordHelper.HashPassword(newPassword);
+                    userToUpdate.Password = PasswordHelper.HashPassword(newPassword);
                     Console.WriteLine("Şifrəniz yeniləndi.");
                     requiresLogout = true;
                 }
@@ -335,16 +328,10 @@ namespace UserApp.controllers
                 }
             }
 
-            if (requiresLogout && isCurrentUser)
-            {
-                Console.WriteLine("Şifrə və ya email dəyişdirildi, hesabdan çıxılacaq. Zəhmət olmasa yenidən daxil olun.");
-                return;
-            }
+           
 
             Console.WriteLine("Məlumatlar uğurla yeniləndi.");
         }
-
-
 
         public void DeleteUserById(User currentUser)
         {

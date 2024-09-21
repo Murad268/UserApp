@@ -4,26 +4,21 @@ using System.Text;
 
 namespace UserApp.helpers
 {
-    internal class PasswordHelper
+    internal static class PasswordHelper
     {
-        public string HashPassword(string password)
+        public static string HashPassword(string password)
         {
-            using (SHA256 sha256Hash = SHA256.Create())
+            using (var sha256 = System.Security.Cryptography.SHA256.Create())
             {
-                byte[] bytes = sha256Hash.ComputeHash(Encoding.UTF8.GetBytes(password));
-                StringBuilder builder = new StringBuilder();
-                for (int i = 0; i < bytes.Length; i++)
-                {
-                    builder.Append(bytes[i].ToString("x2"));
-                }
-                return builder.ToString();
+                var hashedBytes = sha256.ComputeHash(System.Text.Encoding.UTF8.GetBytes(password));
+                return BitConverter.ToString(hashedBytes).Replace("-", "").ToLower();
             }
         }
 
-        public bool VerifyPassword(string hashedPassword, string plainPassword)
+        public static bool VerifyPassword(string hashedPassword, string password)
         {
-            string hashedInputPassword = HashPassword(plainPassword);  
-            return hashedPassword == hashedInputPassword;  
+            return HashPassword(password) == hashedPassword;
         }
     }
+
 }

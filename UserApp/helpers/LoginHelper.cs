@@ -13,18 +13,17 @@ namespace UserApp.helpers
     {
         Users usersDb;
         List<User> users;
-        PasswordHelper passwordHelper;
+
         public LoginHelper()
         {
             usersDb = new Users();
             users = usersDb.users;
-            passwordHelper = new PasswordHelper();
         }
-
 
         public List<User> login(string email, string password)
         {
-            return users.Where(user => (user.Email == email) && (passwordHelper.VerifyPassword(user.Password, password))).ToList();
+            return users.Where(user => (user.Email == email) && (PasswordHelper.VerifyPassword(user.Password, password))).ToList();
         }
     }
+
 }
