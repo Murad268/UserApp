@@ -1,0 +1,14 @@
+C:\Users\TechEvo Computers\Desktop\UserApp\UserApp\bin\Debug\net8.0\UserApp.exe
+C:\Users\TechEvo Computers\Desktop\UserApp\UserApp\bin\Debug\net8.0\UserApp.deps.json
+C:\Users\TechEvo Computers\Desktop\UserApp\UserApp\bin\Debug\net8.0\UserApp.runtimeconfig.json
+C:\Users\TechEvo Computers\Desktop\UserApp\UserApp\bin\Debug\net8.0\UserApp.dll
+C:\Users\TechEvo Computers\Desktop\UserApp\UserApp\bin\Debug\net8.0\UserApp.pdb
+C:\Users\TechEvo Computers\Desktop\UserApp\UserApp\obj\Debug\net8.0\UserApp.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\TechEvo Computers\Desktop\UserApp\UserApp\obj\Debug\net8.0\UserApp.AssemblyInfoInputs.cache
+C:\Users\TechEvo Computers\Desktop\UserApp\UserApp\obj\Debug\net8.0\UserApp.AssemblyInfo.cs
+C:\Users\TechEvo Computers\Desktop\UserApp\UserApp\obj\Debug\net8.0\UserApp.csproj.CoreCompileInputs.cache
+C:\Users\TechEvo Computers\Desktop\UserApp\UserApp\obj\Debug\net8.0\UserApp.dll
+C:\Users\TechEvo Computers\Desktop\UserApp\UserApp\obj\Debug\net8.0\refint\UserApp.dll
+C:\Users\TechEvo Computers\Desktop\UserApp\UserApp\obj\Debug\net8.0\UserApp.pdb
+C:\Users\TechEvo Computers\Desktop\UserApp\UserApp\obj\Debug\net8.0\UserApp.genruntimeconfig.cache
+C:\Users\TechEvo Computers\Desktop\UserApp\UserApp\obj\Debug\net8.0\ref\UserApp.dll
