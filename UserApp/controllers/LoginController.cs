@@ -315,23 +315,35 @@ namespace UserApp.controllers
             {
                 Console.WriteLine("Bu email artıq mövcuddur.");
             }
-            StartPass:
+
+        StartPass:
             Console.WriteLine("Yeni şifrə daxil edin - min: 8 simvol (əgər dəyişməyəcəksinizsə, Enter basın):");
             string newPassword = Console.ReadLine();
-            if(newPassword.Count() < 8) {
-                Console.WriteLine("Şifrəniz minumum 8 simvol ola bilər.");
-                goto StartPass;
-            }
-            if (!string.IsNullOrWhiteSpace(newPassword) && newPassword.Length >= 8)
+
+            if (!string.IsNullOrWhiteSpace(newPassword))
             {
-                userToUpdate.Password = passwordHelper.HashPassword(newPassword);
-                Console.WriteLine("Şifrəniz yeniləndi.");
-                requiresLogout = true;
+                if (newPassword.Length >= 8)
+                {
+                    userToUpdate.Password = passwordHelper.HashPassword(newPassword);
+                    Console.WriteLine("Şifrəniz yeniləndi.");
+                    requiresLogout = true;
+                }
+                else
+                {
+                    Console.WriteLine("Şifrəniz ən azı 8 simvol olmalıdır.");
+                    goto StartPass;
+                }
             }
 
+            if (requiresLogout && isCurrentUser)
+            {
+                Console.WriteLine("Şifrə və ya email dəyişdirildi, hesabdan çıxılacaq. Zəhmət olmasa yenidən daxil olun.");
+                return;
+            }
 
             Console.WriteLine("Məlumatlar uğurla yeniləndi.");
         }
+
 
 
         public void DeleteUserById(User currentUser)
